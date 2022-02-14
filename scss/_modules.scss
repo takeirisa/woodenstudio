@@ -1,0 +1,123 @@
+@use "variables" as *;
+
+// 共通の見た目をもつ要素は、色や大きさなどの見た目と、中央寄せなどの位置は別で書いたほうが使い回ししやすい。
+.section-headline {
+    &__sub{
+        color: $sub;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    &__main {
+        color: $main;
+        font-weight: bold;
+    }
+}
+
+.page-headline {
+    text-align: center;
+    z-index: 1;
+
+    &__sub {
+        color: $white;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    &__main {
+        color: $white;
+        font-weight: bold;
+    }
+}
+
+.sns-link {
+    display: flex;
+    &__icon {
+        background-color: $white;
+        color: $black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &--primary {
+            background-color: $main;
+            color: $white;
+        }
+    }
+}
+
+.color-circle {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    &--green {
+        background-color: $green;
+    }
+    &--blue {
+        background-color: $blue;
+    }
+    &--brown {
+        background-color: $brown;
+    }
+}
+
+.btn {
+    border: 1px solid $main;
+    color: $main;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: $sans;
+    height: 48px;
+    width: 216px;
+    line-height: 48px;//ブロック要素を上下中央に寄せるとき
+    text-align: center;
+    position: relative;
+    z-index: 1;//重なりの優先度。0<1
+    transition: all .8s ease;//btnのホバーアクションの速度0.8秒かけて切り替わる。元の方にかける
+
+    &:hover {
+        background-color: $main;
+        border: none;
+        color: $white;
+    }
+
+    &::after {//疑似要素を追加するときはcontent必須。空の値を用意する。からの値に対してどういうスタイルを適応させていくか
+        content: "";
+        border: 1px solid $main;//枠線をもう一つ重ねて配置する
+        height: 48px;
+        width: 216px;
+        position: absolute;//absoluteは絶対配置を指定する値。起点からどれだけ離れているかを指定できる
+        top: 4px;
+        left: 4px;
+        z-index: 0;//重なりの優先度。0が一番下
+    }
+
+    &:hover::after {
+        top: 0;
+        left: 0;
+    }
+
+    &--primary {
+        background-color: $main;
+        color: $white;
+
+        &:hover {
+            background-color: transparent;//透明
+            border: none;
+            color: $main;
+        }
+    }
+}
+
+.required {
+    color: $red;
+}

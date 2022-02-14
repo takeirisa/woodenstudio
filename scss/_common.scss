@@ -1,0 +1,73 @@
+//変数を使いたいのでvariables.scssをインポートする。ファイル名の_や.scssは省略できる
+//variables.$blackという書き方で呼び出さないといけないけど、as(エイリアス) *で全て使用できるようになる
+@use "variables" as *;
+@use "mixin" as *;
+
+body{ //指定がなければここで指定した内容で表示される
+    color: $black;
+    font-family: $caslon,$serif,$sans,serif;
+    //最後のserifは前に指定したものがなければ、最悪これで対応してくださいという感じ。
+}
+
+
+li{ //リストの点を消す
+    list-style: none;
+}
+
+.pc-none {
+    display: none;
+}
+
+h2{
+    font-size: 36px;
+}
+
+h3{
+    font-size: 28px;
+}
+
+h4{
+    font-size: 16px;
+}
+
+p{
+    font-size: 16px;
+}
+
+span{ // 今回は補助的な役割で使用。見出しの上の補足文など。インラインブロック要素にして使用
+    display: inline-block;
+    font-size: 14px;
+}
+
+@include mq(sp){
+    h2{
+        font-size: 24px;
+    }
+    
+    h3{
+        font-size: 20px;
+    }
+    
+    h4{
+        font-size: 14px;
+    }
+    
+    p{
+        font-size: 14px;
+    }
+    
+    span{ // 今回は補助的な役割で使用。見出しの上の補足文など。
+        font-size: 12px;
+    }
+
+    .pc-none {
+        display: block;
+    }
+
+    .mobile-none {
+        display: none;//sp版の時は<br>を表示させない。改行しない
+    }
+
+    
+    
+}

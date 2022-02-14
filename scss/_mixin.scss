@@ -1,0 +1,15 @@
+// sassではmapという。辞書型みたいな
+$breakpoint:(//breakpointという変数の中にsp,tsb,pcにそれぞれキーと値
+    sp:'screen and (max-width:599px)',
+    tab:'screen and (max-width:1024px)',
+    pc:'screen and (min-width:1025px)',
+);
+
+@mixin mq($size){//mq->メディアクエリの略。この時点で$sizeの中には_headerからのspが入っている
+    @media #{map-get($breakpoint, $size)}{
+    //map-get(getメソッドでmapを呼び出す)で$breakpointを呼び出して、
+    //どのキーを使いたいか$sizeに入っているものを呼び出す。
+    //map-get('screen and (max-width:599px)')となる
+        @content
+    }
+}
